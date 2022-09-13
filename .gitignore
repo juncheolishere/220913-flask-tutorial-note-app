@@ -1,0 +1,5 @@
+#custom
+*.db
+*.excalidraw
+Pipfile
+Pipfile.lock
