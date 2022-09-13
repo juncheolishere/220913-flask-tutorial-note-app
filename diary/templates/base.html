@@ -34,6 +34,26 @@
             </div>
         </div>
     </nav>
+    <!-- ./navbar -->
+    <!-- message flashing -->
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+        {% if msgs %}
+            {% for category, msg in msgs %}
+                {% if category == "error" %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ msg }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% elif category == "success" %}
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    {{ msg }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <!-- ./message flashing -->
     <!-- content -->
     <div class="container">
         {% block desctiption %} 
