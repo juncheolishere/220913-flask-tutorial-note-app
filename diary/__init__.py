@@ -10,4 +10,12 @@ def create_app():
     # 어떠한 문자열이어도 상관없다. like boss.
     app.config['SECRET_KEY'] = 'jc_secret_key'
 
+    # Import Blueprint
+    from .views import views
+    from .auth import auth
+
+    # Apply Blueprint
+    app.register_blueprint(views, url_prefix='/')
+    app.register_blueprint(auth, url_prefix='/')
+
     return app
