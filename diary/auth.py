@@ -12,7 +12,7 @@ auth = Blueprint('auth', __name__)
 @login_required
 def logout():
     logout_user()
-    return render_template('logout.html')
+    return redirect(url_for('auth.sign_in'))
 
 # login
 @auth.route('/sign-in', methods=['GET','POST'])
@@ -28,7 +28,7 @@ def sign_in():
             if check_password_hash(user.password, password1):
                 flash('로그인 완료', category='success')
                 login_user(user, remember=True)
-                return redirect(url_for(views.home))
+                return redirect(url_for('views.home'))
             else:
                 flash('비밀번호가 다릅니다.', category='error')
         else:
