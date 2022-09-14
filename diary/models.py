@@ -8,7 +8,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120))
     nickname = db.Column(db.String(80), unique=True, nillable=False)
     password = db.Column(db.String(200))
-    
+    notes = db.relationship('Note')
 
 # define Note Model
 class Note(db.Model):
@@ -16,4 +16,4 @@ class Note(db.Model):
     title = db.Column(db.String(50))
     content = db.Column(db.String(2000))
     datetime = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
-
+    user_id = db.Column(db.Integer, db.ForeignKey('user_id'))
